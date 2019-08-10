@@ -1,7 +1,7 @@
 from slackbot.bot import respond_to
 from importlib import import_module
 from privilege.check_privilege import has_privilege
-#from functions.send_data import get_channel_id_from_name
+from functions.database_admin import create_df_by_query
 from slacker import Slacker
 import re
 import slackbot_settings
@@ -38,18 +38,9 @@ def data_exetraction_master(message):
         return
 
     data_file_path = "temp_data/{}.{}".format(project_name, project.data_type)
-    # create_data(project.sql, project.database_type, data_file_path)
+    df = create_df_by_query(project.sql, project.database_type)
+    df.to_csv(data_file_path, index=None)
 
     channel_id = message.body["channel"]
     slacker.files.upload(file_=data_file_path, channels=channel_id)
     message.reply("データを抽出しました。csv形式で納品します。")
-
-
-class Message():
-    """for test"""
-    body = {}
-
-    def __init__(self):
-        pass
-
-message = Message()

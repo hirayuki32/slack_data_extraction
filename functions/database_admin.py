@@ -9,7 +9,7 @@ def _create_oracle_con():
     return conn
 
 
-def create_df_by_query_data(sql, database_type):
+def create_df_by_query(sql, database_type):
     """
     args:
         sql: string

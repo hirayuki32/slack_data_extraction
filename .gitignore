@@ -3,6 +3,7 @@
 .pytest_cache/*
 
 slackbot_settings.py
+functions/oracle_conf.py
 user_privileges.csv
 
 temp_data/*

@@ -3,7 +3,7 @@ import cx_Oracle
 
 
 def _create_oracle_con():
-    from oracle_conf import host, port, sid, user, passwd
+    from .oracle_conf import host, port, sid, user, passwd
     tns = cx_Oracle.makedsn(host, port, sid)
     conn = cx_Oracle.connect(user, passwd, tns)
     return conn

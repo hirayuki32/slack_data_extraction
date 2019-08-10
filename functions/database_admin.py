@@ -9,15 +9,20 @@ def _create_oracle_con():
     return conn
 
 
-def create_df_by_query_data(sql):
+def create_df_by_query_data(sql, database_type):
     """
     args:
-        oracle_cur: oracle cursol created by cx_Oracle
-        SQL: string
+        sql: string
+        database_type: "oracle"
+        Other databases are not implemented yet
     return:
         pandas DataFrame
     """
-    conn = _create_oracle_con()
+    # Other databases are not implemented yet
+    if database_type == "oracle":
+        conn = _create_oracle_con()
+    else:
+        raise ValueError("指定のdatabase_typeが不正です")
     df = pd.read_sql_query(sql, conn)
     conn.close
     return df
